@@ -117,6 +117,6 @@ The response includes:
 
 ### 🤝 Credits
 
-Developed with ❤️ as a smart career planning tool for Indian students.
+Developed with ❤️ as a smart career planning tool for Indian students under the Hack With Haze Hackathon.
 
 
