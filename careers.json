@@ -1,0 +1,50 @@
+[
+    {
+        "career": "Software Engineer",
+        "streams": ["science", "engineering"],
+        "skills": ["programming", "problem solving", "algorithms"],
+        "description": "Build software applications and systems.",
+        "environments": ["dynamic", "quiet"],
+        "motivations": ["income", "innovation"],
+        "exams": ["JEE", "GATE"],
+        "growth": "high",
+        "salary_range": [6, 40],
+        "demand": "high"
+    },
+    {
+        "career": "Chartered Accountant",
+        "streams": ["commerce"],
+        "skills": ["accounting", "finance", "taxation"],
+        "description": "Manage financial records and taxes.",
+        "environments": ["structured"],
+        "motivations": ["income", "stability"],
+        "exams": ["CA Foundation", "CA Intermediate"],
+        "growth": "medium",
+        "salary_range": [5, 25],
+        "demand": "high"
+    },
+    {
+        "career": "Graphic Designer",
+        "streams": ["arts"],
+        "skills": ["creativity", "design", "photoshop"],
+        "description": "Create visual content for media and branding.",
+        "environments": ["creative"],
+        "motivations": ["innovation", "income"],
+        "exams": [],
+        "growth": "medium",
+        "salary_range": [3, 15],
+        "demand": "medium"
+    },
+    {
+        "career": "Civil Services Officer",
+        "streams": ["arts", "science", "commerce"],
+        "skills": ["general knowledge", "administration", "public speaking"],
+        "description": "Work in government administration (IAS, IPS).",
+        "environments": ["structured"],
+        "motivations": ["helping", "stability"],
+        "exams": ["UPSC"],
+        "growth": "medium",
+        "salary_range": [8, 30],
+        "demand": "high"
+    }
+]

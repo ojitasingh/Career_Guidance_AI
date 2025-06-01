@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>AI-powered Career Guidance Engine - India</title>
+<style>
+  /* Reset and base */
+  * {
+    box-sizing: border-box;
+  }
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    background: linear-gradient(135deg, #6c63ff 0%, #3a3dff 100%);
+    color: #f0f0f0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+  }
+
+  header {
+    margin-bottom: 20px;
+    text-align: center;
+    max-width: 700px;
+  }
+
+  header h1 {
+    font-size: 2.8rem;
+    margin-bottom: 5px;
+    text-shadow: 0 0 8px #000000a1;
+  }
+
+  header p {
+    font-size: 1.1rem;
+    color: #d1d1ff;
+    font-style: italic;
+  }
+
+  main {
+    background: #222259cc;
+    padding: 20px 30px;
+    border-radius: 12px;
+    width: 100%;
+    max-width: 700px;
+    box-shadow: 0 0 16px #000000a1;
+  }
+
+  section {
+    margin-bottom: 30px;
+  }
+
+  label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 6px;
+  }
+
+  input[type="text"],
+  textarea,
+  select {
+    width: 100%;
+    padding: 10px 14px;
+    border-radius: 8px;
+    border: none;
+    font-size: 1rem;
+    outline: none;
+    resize: vertical;
+  }
+
+  /* Aptitude Test */
+  .aptitude-question {
+    margin-bottom: 15px;
+  }
+
+  .aptitude-question h4 {
+    margin-bottom: 8px;
+  }
+
+  .options label {
+    cursor: pointer;
+    display: block;
+    margin-bottom: 6px;
+    padding: 4px 8px;
+    border-radius: 6px;
+    background: #5555aa;
+    transition: background 0.3s ease;
+  }
+
+  .options label:hover {
+    background: #7a77e2;
+  }
+
+  input[type="radio"] {
+    margin-right: 8px;
+  }
+
+  /* Buttons */
+  button {
+    background: #6c63ff;
+    color: white;
+    border: none;
+    padding: 12px 22px;
+    font-size: 1.1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 700;
+    transition: background 0.3s ease;
+  }
+
+  button:hover:not(:disabled) {
+    background: #5148d2;
+  }
+
+  button:disabled {
+    background: #444488;
+    cursor: not-allowed;
+  }
+
+  /* Result */
+  #result {
+    background: #343473cc;
+    border-radius: 12px;
+    padding: 15px 20px;
+    max-height: 400px;
+    overflow-y: auto;
+  }
+
+  #result h3 {
+    margin-top: 0;
+    margin-bottom: 12px;
+    color: #a5a5ff;
+    text-shadow: 0 0 5px #000000a1;
+  }
+
+  #result ul {
+    list-style: disc;
+    padding-left: 20px;
+  }
+
+  #result ul li {
+    margin-bottom: 6px;
+  }
+
+  /* Responsive */
+  @media (max-width: 600px) {
+    main {
+      padding: 16px 20px;
+    }
+  }
+</style>
+</head>
+<body>
+<header>
+  <h1>AI-powered Career Guidance Engine (India)</h1>
+  <p>Discover your strengths and get personalized career recommendations aligned with Indian education & job trends.</p>
+</header>
+<main>
+  <form id="careerForm">
+    <section id="aptitudeSection">
+      <h2>Aptitude Test</h2>
+      <div class="aptitude-question" data-qid="q1">
+        <h4>1. Which type of problems do you enjoy solving the most?</h4>
+        <div class="options">
+          <label><input type="radio" name="q1" value="logical" required /> Logical puzzles and patterns</label>
+          <label><input type="radio" name="q1" value="numerical" /> Numerical and mathematical problems</label>
+          <label><input type="radio" name="q1" value="creative" /> Creative and design challenges</label>
+          <label><input type="radio" name="q1" value="verbal" /> Reading and verbal reasoning</label>
+        </div>
+      </div>
+      <div class="aptitude-question" data-qid="q2">
+        <h4>2. When learning something new, which method suits you best?</h4>
+        <div class="options">
+          <label><input type="radio" name="q2" value="visual" required /> Visuals, diagrams, charts</label>
+          <label><input type="radio" name="q2" value="auditory" /> Listening and discussions</label>
+          <label><input type="radio" name="q2" value="kinesthetic" /> Hands-on activities and experiments</label>
+          <label><input type="radio" name="q2" value="reading" /> Reading books and articles</label>
+        </div>
+      </div>
+      <div class="aptitude-question" data-qid="q3">
+        <h4>3. What kind of subjects do you prefer in school/college?</h4>
+        <div class="options">
+          <label><input type="radio" name="q3" value="science" required /> Science & Technology (Physics, Chemistry, Biology)</label>
+          <label><input type="radio" name="q3" value="commerce" /> Commerce & Accountancy</label>
+          <label><input type="radio" name="q3" value="arts" /> Arts, Humanities & Social Sciences</label>
+          <label><input type="radio" name="q3" value="engineering" /> Engineering & Technical subjects</label>
+        </div>
+      </div>
+      <div class="aptitude-question" data-qid="q4">
+        <h4>4. What kind of work environment do you prefer?</h4>
+        <div class="options">
+          <label><input type="radio" name="q4" value="structured" required /> Structured and rule-based</label>
+          <label><input type="radio" name="q4" value="creative" /> Creative and expressive</label>
+          <label><input type="radio" name="q4" value="quiet" /> Quiet and analytical</label>
+          <label><input type="radio" name="q4" value="dynamic" /> Fast-paced and dynamic</label>
+        </div>
+      </div>
+      <div class="aptitude-question" data-qid="q5">
+        <h4>5. What motivates you most in a career?</h4>
+        <div class="options">
+          <label><input type="radio" name="q5" value="income" required /> Earning high income</label>
+          <label><input type="radio" name="q5" value="helping" /> Helping others</label>
+          <label><input type="radio" name="q5" value="innovation" /> Innovation and learning</label>
+          <label><input type="radio" name="q5" value="stability" /> Job stability and security</label>
+        </div>
+      </div>
+    </section>
+    <section id="aspirationSection">
+      <h2>Your Aspirations & Interests</h2>
+      <label for="aspirations">Describe your career goals, interests, or dreams (write a few sentences):</label>
+      <textarea id="aspirations" name="aspirations" rows="4" placeholder="E.g. I want to work in government, or become an engineer, or a creative artist..." required></textarea>
+    </section>
+    <section id="skillsSection">
+      <h2>Your Skills & Experience</h2>
+      <label for="skills">List your skills or areas of expertise (comma separated):</label>
+      <input type="text" id="skills" name="skills" placeholder="E.g. programming, accounting, public speaking, data analysis" required />
+    </section>
+    <button type="submit">Get Career Recommendations</button>
+  </form>
+
+  <section id="result" style="display:none;">
+    <h3>Your AI Career Guidance</h3>
+    <div id="recommendationSummary"></div>
+    <div id="recommendedCareers"></div>
+    <div id="skillGapSuggestion"></div>
+  </section>
+</main>
+
+<script>
+  // Temporary "database" of careers mapped to Indian streams and skill requirements
+  const careerData = [
+    {
+      career: "Software Engineer",
+      streams: ["science", "engineering"],
+      skills: ["programming", "problem solving", "algorithms", "data structures"],
+      exams: ["JEE", "GATE"],
+      description: "Develop software applications, work on computer systems and technologies.",
+      environment: ["dynamic", "quiet"],
+      motivation: ["income", "innovation"]
+    },
+    {
+      career: "Chartered Accountant (CA)",
+      streams: ["commerce"],
+      skills: ["accounting", "finance", "auditing", "taxation"],
+      exams: ["CA Foundation", "CA Intermediate"],
+      description: "Manage accounting, auditing, taxation, and financial consulting.",
+      environment: ["structured"],
+      motivation: ["income", "stability"]
+    },
+    {
+      career: "Civil Services Officer (UPSC)",
+      streams: ["arts", "science", "commerce"],
+      skills: ["general knowledge", "administration", "public speaking", "writing"],
+      exams: ["UPSC"],
+      description: "Work in various government departments as IAS, IPS, IFS officers.",
+      environment: ["structured"],
+      motivation: ["helping", "stability"]
+    },
+    {
+      career: "Medical Doctor (NEET)",
+      streams: ["science"],
+      skills: ["biology", "chemistry", "diagnosis", "patient care"],
+      exams: ["NEET"],
+      description: "Practice medicine, diagnose and treat patients.",
+      environment: ["dynamic", "structured"],
+      motivation: ["helping", "innovation"]
+    },
+    {
+      career: "Mechanical Engineer",
+      streams: ["science", "engineering"],
+      skills: ["mechanics", "design", "autocad", "problem solving"],
+      exams: ["JEE", "GATE"],
+      description: "Design, manufacture, and maintain mechanical systems.",
+      environment: ["structured", "quiet"],
+      motivation: ["innovation", "income"]
+    },
+    {
+      career: "Graphic Designer",
+      streams: ["arts"],
+      skills: ["creativity", "design", "photoshop", "illustrator"],
+      exams: [],
+      description: "Create visual concepts and designs using computer software.",
+      environment: ["creative"],
+      motivation: ["innovation", "income"]
+    },
+    {
+      career: "Data Analyst",
+      streams: ["commerce", "science", "engineering"],
+      skills: ["data analysis", "excel", "sql", "statistics", "programming"],
+      exams: [],
+      description: "Analyze data to help businesses make decisions.",
+      environment: ["quiet", "structured"],
+      motivation: ["innovation", "income"]
+    },
+    {
+      career: "Teacher/Educator",
+      streams: ["arts", "science", "commerce"],
+      skills: ["communication", "subject expertise", "patience", "public speaking"],
+      exams: ["CTET", "TET"],
+      description: "Teach students at various educational levels.",
+      environment: ["structured"],
+      motivation: ["helping", "stability"]
+    }
+  ];
+
+  // Career clusters keywords mapped for NLP simple extraction
+  const careerClusters = {
+    "engineering": ["engineer", "engineering", "developer", "programming", "software", "mechanical", "technology"],
+    "commerce": ["accounting", "finance", "commerce", "business", "tax", "auditing"],
+    "medical": ["doctor", "medicine", "medical", "patient", "health", "neonatology", "nephrology", "biology"],
+    "government": ["government", "public service", "civil services", "politics", "admin", "administration", "upsc", "ias"],
+    "arts": ["artist", "design", "creative", "drawing", "music", "literature", "humanities", "graphic"],
+    "data": ["data", "analytics", "statistics", "analysis", "sql", "business intelligence"],
+    "education": ["teacher", "education", "teaching", "training", "school", "lecturer"]
+  };
+
+  // Helper: To normalize strings
+  function normalizeText(text) {
+    return text.toLowerCase().replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,"").trim();
+  }
+
+  // Extract interest clusters from aspirations text
+  function extractCareerClusters(text) {
+    const textNorm = normalizeText(text);
+    const tokens = textNorm.split(/\s+/);
+    const foundClusters = new Set();
+
+    for (const [cluster, keywords] of Object.entries(careerClusters)) {
+      for (const kw of keywords) {
+        if (tokens.includes(kw)) {
+          foundClusters.add(cluster);
+          break;
+        }
+      }
+    }
+    return Array.from(foundClusters);
+  }
+
+  // Simple aptitude analysis: determine dominant stream from aptitude test
+  function analyzeAptitude(answers) {
+    // Counting stream options to find dominant
+    const streamCounts = { science: 0, commerce: 0, arts: 0, engineering: 0 };
+
+    // q1: logical, numerical, creative, verbal => map to streams
+    switch(answers.q1) {
+      case "logical": streamCounts.engineering++; break;
+      case "numerical": streamCounts.science++; break;
+      case "creative": streamCounts.arts++; break;
+      case "verbal": streamCounts.arts++; break;
+    }
+
+    // q2: visual, auditory, kinesthetic, reading => no direct stream but info for personalization
+    // We'll skip direct stream mapping for q2 here.
+
+    // q3: direct stream preference
+    if (answers.q3 in streamCounts) {
+      streamCounts[answers.q3]++;
+    }
+
+    // Get max count stream (ties resolved by order)
+    const streams = Object.keys(streamCounts);
+    let dominantStream = streams[0];
+    let maxCount = streamCounts[dominantStream];
+
+    for (const stream of streams) {
+      if (streamCounts[stream] > maxCount) {
+        dominantStream = stream;
+        maxCount = streamCounts[stream];
+      }
+    }
+
+    return dominantStream;
+  }
+
+  // Match careers by streams, clusters, environment and motivation
+  function recommendCareers(userStream, userClusters, userSkills, userEnv, userMotivation) {
+    // Filter careers by userStream and at least one cluster match in streams or clusters
+    let matches = careerData.filter(career => {
+      // Check stream match
+      let streamMatch = career.streams.includes(userStream);
+      if (!streamMatch) return false;
+
+      // Check cluster overlap (clusters array overlap with career streams or career cluster)
+      const clustersOverlap = userClusters.some(cluster => {
+        // The career's streams or known keys as clusters
+        return career.streams.includes(cluster) || (careerClusters[cluster] && careerClusters[cluster].some(kw => career.career.toLowerCase().includes(kw)));
+      });
+
+      return clustersOverlap || userClusters.length === 0; // if no user clusters, only stream match
+    });
+
+    // Filter by environment preference if specified
+    if (userEnv) {
+      matches = matches.filter(career => career.environment.includes(userEnv));
+    }
+
+    // Filter by motivation preference if specified
+    if (userMotivation) {
+      matches = matches.filter(career => career.motivation.includes(userMotivation));
+    }
+
+    // Rank by skill matching count descending
+    matches.sort((a,b) => {
+      let aSkillMatch = a.skills.filter(s => userSkills.includes(s)).length;
+      let bSkillMatch = b.skills.filter(s => userSkills.includes(s)).length;
+      return bSkillMatch - aSkillMatch;
+    });
+
+    return matches;
+  }
+
+  // Skill gap analysis: compare required skills of recommended careers and user's skills
+  function calculateSkillGap(careers, userSkills) {
+    if (careers.length === 0) return [];
+
+    // Aggregate required skills from top 3 careers
+    let neededSkills = new Set();
+    careers.slice(0,3).forEach(career => {
+      career.skills.forEach(skill => neededSkills.add(skill));
+    });
+
+    let skillGap = Array.from(neededSkills).filter(skill => !userSkills.includes(skill));
+    return skillGap;
+  }
+
+  document.getElementById('careerForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    // Collect aptitude answers
+    const answers = {
+      q1: document.querySelector('input[name="q1"]:checked')?.value,
+      q2: document.querySelector('input[name="q2"]:checked')?.value, 
+      q3: document.querySelector('input[name="q3"]:checked')?.value,
+      q4: document.querySelector('input[name="q4"]:checked')?.value,
+      q5: document.querySelector('input[name="q5"]:checked')?.value
+    };
+
+    if (!answers.q1 || !answers.q2 || !answers.q3 || !answers.q4 || !answers.q5) {
+      alert("Please answer all aptitude test questions.");
+      return;
+    }
+
+    // Get aspirations text input
+    const aspirations = document.getElementById('aspirations').value.trim();
+    if (aspirations.length < 5) {
+      alert("Please provide a more descriptive aspiration.");
+      return;
+    }
+
+    // Get skills input and normalize
+    const skillsString = document.getElementById('skills').value;
+    let userSkills = skillsString.split(',').map(s => s.toLowerCase().trim()).filter(s => s.length > 0);
+
+    if (userSkills.length === 0) {
+      alert("Please enter at least one skill.");
+      return;
+    }
+
+    // Analyze aptitude dominant stream
+    const dominantStream = analyzeAptitude(answers);
+
+    // Extract career clusters from aspirations
+    const userClusters = extractCareerClusters(aspirations);
+
+    // Recommend careers with new filters
+    const recommended = recommendCareers(dominantStream, userClusters, userSkills, answers.q4, answers.q5);
+
+    // Skill gap analysis
+    const skillGap = calculateSkillGap(recommended, userSkills);
+
+    // Display results
+    let summary = `<p><strong>Dominant Aptitude Stream:</strong> ${dominantStream.charAt(0).toUpperCase() + dominantStream.slice(1)}</p>`;
+    summary += `<p><strong>Career Interests Detected:</strong> ${
+      userClusters.length > 0 ? userClusters.map(c => c.charAt(0).toUpperCase() + c.slice(1)).join(', ') : "No strong cluster detected"
+    }</p>`;
+    summary += `<p><strong>Your Skills:</strong> ${userSkills.join(", ")}</p>`;
+    summary += `<p><strong>Preferred Work Environment:</strong> ${answers.q4.charAt(0).toUpperCase() + answers.q4.slice(1)}</p>`;
+    summary += `<p><strong>Primary Career Motivation:</strong> ${answers.q5.charAt(0).toUpperCase() + answers.q5.slice(1)}</p>`;
+
+    document.getElementById('recommendationSummary').innerHTML = summary;
+
+    if (recommended.length === 0) {
+      document.getElementById('recommendedCareers').innerHTML = "<p>No suitable career recommendations found with current inputs. Try modifying your aspirations or skills.</p>";
+      document.getElementById('skillGapSuggestion').innerHTML = "";
+    } else {
+      // List top 3 careers
+      let careersHtml = "<h4>Recommended Career Paths:</h4><ul>";
+      recommended.slice(0, 3).forEach(career => {
+        careersHtml += `<li><strong>${career.career}</strong><br/><em>${career.description}</em><br/><small>Relevant Streams: ${career.streams.join(", ")}</small><br/><small>Recommended Exams: ${career.exams.length ? career.exams.join(", ") : "None"}</small></li>`;
+      });
+      careersHtml += "</ul>";
+
+      document.getElementById('recommendedCareers').innerHTML = careersHtml;
+
+      // Skill gap suggestion
+      if (skillGap.length > 0) {
+        document.getElementById('skillGapSuggestion').innerHTML = `<h4>Skill Gap Analysis</h4><p>Consider developing these skills to better align with recommended careers:</p><ul>${skillGap.map(s => `<li>${s}</li>`).join("")}</ul>`;
+      } else {
+        document.getElementById('skillGapSuggestion').innerHTML = "<h4>Skill Gap Analysis</h4><p>You already have most of the skills needed for your recommended career paths. Great job!</p>";
+      }
+    }
+
+    // Show result
+    document.getElementById('result').style.display = 'block';
+
+    // Scroll to result smoothly
+    document.getElementById('result').scrollIntoView({behavior: "smooth"});
+  });
+</script>
+</body>
+</html>
